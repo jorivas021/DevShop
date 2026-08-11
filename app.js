@@ -307,3 +307,79 @@ document.addEventListener('DOMContentLoaded', () => {
   fetchProducts();
   saveAndRenderCart(); // Restaure le panier du localStorage à l'affichage
 });
+
+// ==========================================
+// 7. SYSTÈME DE NOTIFICATION TOAST
+// ==========================================
+const toastContainer = document.getElementById('toast-container');
+
+function showToast(message) {
+  const toast = document.createElement('div');
+  toast.classList.add('toast');
+  
+  toast.innerHTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
+    <span>${escapeHtml(message)}</span>
+  `;
+
+  toastContainer.appendChild(toast);
+
+  // Auto-suppression après 3 secondes avec animation de disparition
+  setTimeout(() => {
+    toast.classList.add('fade-out');
+    toast.addEventListener('transitionend', () => {
+      toast.remove();
+    });
+  }, 2700);
+}
+
+// Mise à jour de addToCart pour déclencher le Toast
+function addToCart(productId) {
+  const product = products.find(p => p.id === productId);
+  if (!product) return;
+
+  const existingItem = cart.find(item => item.id === productId);
+
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    cart.push({ ...product, quantity: 1 });
+  }
+
+  saveAndRenderCart();
+  
+  // Notification Toast
+  showToast(`"${product.title.substring(0, 20)}..." ajouté au panier !`);
+}
+
+// ==========================================
+// 8. GESTION DU MODE SOMBRE (DARK MODE)
+// ==========================================
+const themeToggleBtn = document.getElementById('theme-toggle');
+const sunIcon = document.getElementById('theme-icon-sun');
+const moonIcon = document.getElementById('theme-icon-moon');
+
+// Vérifier la préférence sauvegardée
+const savedTheme = localStorage.getItem('devshop_theme');
+
+if (savedTheme === 'dark') {
+  document.body.classList.add('dark-mode');
+  sunIcon.classList.remove('hidden');
+  moonIcon.classList.add('hidden');
+}
+
+themeToggleBtn.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+  const isDark = document.body.classList.contains('dark-mode');
+
+  // Mise à jour des icônes
+  if (isDark) {
+    sunIcon.classList.remove('hidden');
+    moonIcon.classList.add('hidden');
+    localStorage.setItem('devshop_theme', 'dark');
+  } else {
+    sunIcon.classList.add('hidden');
+    moonIcon.classList.remove('hidden');
+    localStorage.setItem('devshop_theme', 'light');
+  }
+});

@@ -64,9 +64,10 @@ body {
 }
 
 .logo-text {
-  font-size: 1.4rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  letter-spacing: -0.5px;
+  margin: 0;
+  line-height: 1;
 }
 
 .logo-text .highlight {
@@ -135,6 +136,15 @@ body {
   font-weight: 700;
   padding: 2px 7px;
   border-radius: 20px;
+}
+
+.cart-header h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
 }
 
 /* ==========================================
@@ -514,5 +524,146 @@ body {
 
   .categories-section {
     padding: 0.5rem 1rem;
+  }
+}
+
+/* ==========================================
+   NAVIGATION ACTIONS & BOUTON THEME
+   ========================================== */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.theme-toggle-btn {
+  background: #1e293b;
+  border: 1px solid #334155;
+  color: #94a3b8;
+  padding: 0.55rem;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.theme-toggle-btn:hover {
+  color: white;
+  border-color: var(--primary);
+}
+
+/* ==========================================
+   DARK MODE (Variables d'override)
+   ========================================== */
+body.dark-mode {
+  --body-bg: #0f172a;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --border-color: #334155;
+  --dark-bg: #020617;
+}
+
+body.dark-mode .categories-section,
+body.dark-mode .product-card,
+body.dark-mode .cart-drawer {
+  background-color: #1e293b;
+  color: #f8fafc;
+}
+
+body.dark-mode .card-image {
+  background-color: #0f172a;
+}
+
+body.dark-mode .card-image img {
+  mix-blend-mode: normal;
+}
+
+body.dark-mode .category-btn {
+  background-color: #0f172a;
+  border-color: #334155;
+  color: #94a3b8;
+}
+
+body.dark-mode .category-btn.active {
+  background-color: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+body.dark-mode .product-title {
+  color: #f8fafc;
+}
+
+body.dark-mode .product-price {
+  color: #38bdf8;
+}
+
+body.dark-mode .add-to-cart-btn {
+  background-color: var(--primary);
+}
+
+body.dark-mode .add-to-cart-btn:hover {
+  background-color: var(--primary-hover);
+}
+
+body.dark-mode .qty-btn {
+  background: #334155;
+  border-color: #475569;
+  color: white;
+}
+
+body.dark-mode .cart-item img {
+  background: #0f172a;
+}
+
+/* ==========================================
+   ANIMATION TOAST
+   ========================================== */
+.toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: #0f172a;
+  color: white;
+  padding: 0.85rem 1.25rem;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  border-left: 4px solid var(--accent-green);
+  font-size: 0.9rem;
+  font-weight: 500;
+  animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+body.dark-mode .toast {
+  background-color: #1e293b;
+  border-color: #38bdf8;
+}
+
+.toast.fade-out {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
