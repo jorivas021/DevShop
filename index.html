@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevShop - Tech Store SPA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation principale -->
+  <header class="navbar">
+    <div class="brand">
+      <!-- Logo Tech SVG -->
+      <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 0 1-8 0"/>
+        <path d="m10 13-2 2 2 2"/>
+        <path d="m14 13 2 2-2 2"/>
+      </svg>
+      <span class="logo-text">Dev<span class="highlight">Shop</span></span>
+    </div>
+
+    <div class="search-container">
+      <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input type="text" id="search-input" placeholder="Rechercher des composants, composants tech...">
+    </div>
+
+    <button id="cart-btn" class="cart-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/>
+        <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+      </svg>
+      <span>Panier</span>
+      <span id="cart-count" class="cart-badge">0</span>
+    </button>
+  </header>
+
+  <!-- Filtres par catégories -->
+  <section class="categories-section">
+    <div class="categories-container" id="categories-container">
+      <button class="category-btn active" data-category="all">Tous les produits</button>
+      <!-- Injecté dynamiquement par app.js -->
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div id="loader" class="loader hidden">
+      <div class="spinner"></div>
+      <p>Chargement du catalogue Tech...</p>
+    </div>
+    <div id="error-message" class="error-message hidden"></div>
+    <div id="products-grid" class="products-grid"></div>
+  </main>
+
+  <!-- Tiroir Panier (Off-canvas) -->
+  <aside id="cart-drawer" class="cart-drawer">
+    <div class="cart-header">
+      <h3>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+        Mon Panier
+      </h3>
+      <button id="close-cart-btn" class="close-btn">&times;</button>
+    </div>
+    <div id="cart-items" class="cart-items">
+      <!-- Les articles s'affichent ici -->
+    </div>
+    <div class="cart-footer">
+      <div class="summary-row">
+        <span>Sous-total</span>
+        <span id="cart-total" class="total-amount">0.00 $</span>
+      </div>
+      <button id="checkout-btn" class="checkout-btn">Commander maintenant</button>
+    </div>
+  </aside>
+
+  <!-- Overlay -->
+  <div id="overlay" class="overlay"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
