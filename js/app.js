@@ -324,13 +324,15 @@ function showToast(message) {
 
   toastContainer.appendChild(toast);
 
-  // Auto-suppression après 3 secondes avec animation de disparition
   setTimeout(() => {
     toast.classList.add('fade-out');
-    toast.addEventListener('transitionend', () => {
+  }, 2500);
+
+  setTimeout(() => {
+    if (toast.parentNode) {
       toast.remove();
-    });
-  }, 2700);
+    }
+  }, 2800);
 }
 
 // Mise à jour de addToCart pour déclencher le Toast
