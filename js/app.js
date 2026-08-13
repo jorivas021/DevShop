@@ -201,7 +201,7 @@ function renderCartDrawer() {
 
   if (cart.length === 0) {
     cartItemsContainer.innerHTML = '<p class="empty-cart-msg">Votre panier est vide.</p>';
-    cartTotalElement.textContent = '0.00 €';
+    cartTotalElement.textContent = '0.00 $';
     return;
   }
 
@@ -231,7 +231,7 @@ function renderCartDrawer() {
     cartItemsContainer.appendChild(itemElement);
   });
 
-  cartTotalElement.textContent = `${total.toFixed(2)} €`;
+  cartTotalElement.textContent = `${total.toFixed(2)} $`;
 }
 
 // Event Delegation pour la gestion des boutons (+, -, suppr) dans le panier
